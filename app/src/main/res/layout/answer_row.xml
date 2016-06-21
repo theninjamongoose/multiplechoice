@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/answer_constrant_layout">
+
+    <CheckBox
+        android:text="Error Unset"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer_radio_btn"
+        app:layout_constraintLeft_toLeftOf="@+id/answer_constrant_layout"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="@+id/answer_constrant_layout" />
+</android.support.constraint.ConstraintLayout>
