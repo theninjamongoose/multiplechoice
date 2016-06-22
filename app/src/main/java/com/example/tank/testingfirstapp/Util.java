@@ -1,5 +1,10 @@
 package com.example.tank.testingfirstapp;
 
+import com.example.tank.testingfirstapp.model.Answer;
+import com.example.tank.testingfirstapp.model.Survey;
+import com.example.tank.testingfirstapp.model.QuestionAnswer;
+import com.example.tank.testingfirstapp.ui.IPaginate;
+
 import java.util.ArrayList;
 
 /**
@@ -7,29 +12,33 @@ import java.util.ArrayList;
  */
 
 public class Util {
-    public static OverwatchQuestions getTestData(){
-        final QuestionAnswer questionOne = buildQuestionAnswer("This is an intriguing demo",
+    public static Survey getTestData(){
+        final QuestionAnswer intrigueQuestion = buildQuestionAnswer("This is an intriguing demo.",
                 new String[]{"True", "False"});
 
-        final QuestionAnswer questionTwo = buildQuestionAnswer("Shane is",
+        final QuestionAnswer heightQuestion = buildQuestionAnswer("Shane is  ____________",
                 new String[]{"Not tall",
                         "Some what Not Tall",
                         "Kind of Average Hieght",
                         "Taller then Some",
                         "A daa gum Giant"});
 
-        final QuestionAnswer questionThree = buildQuestionAnswer("This is an intriguing demo",
+        final QuestionAnswer sevenQuestion = buildQuestionAnswer("This is 7 Options",
+                new String[]{"1", "2", "3", "4", "5", "6", "7"});
+
+        final QuestionAnswer superHeroQuestion = buildQuestionAnswer("Who is your favorite super hero?",
                 new String[]{"Batman",
                         "Superman",
                         "Captain America"});
 
-        OverwatchQuestions overwatchQuestions = new OverwatchQuestions();
-        overwatchQuestions.setQuestions(new ArrayList<QuestionAnswer>(){{
-            add(questionOne);
-            add(questionTwo);
-            add(questionThree);
+        Survey survey = new Survey();
+        survey.setQuestions(new ArrayList<QuestionAnswer>(){{
+            add(heightQuestion);
+            add(sevenQuestion);
+            add(superHeroQuestion);
+            add(intrigueQuestion);
         }});
-        return overwatchQuestions;
+        return survey;
     }
 
     private static QuestionAnswer buildQuestionAnswer(String question, final String[] answerText){
@@ -45,4 +54,22 @@ public class Util {
         return questionAnswer;
     }
 
+    public static IPaginate iPaginate;
+
+    public static ArrayList<Answer> getUserAnswers(ArrayList<QuestionAnswer> questionAnswers) {
+        ArrayList<Answer> userAnswers = new ArrayList<>();
+        for(QuestionAnswer questionAnswer : questionAnswers){
+            boolean answerSubmitted = false;
+            for(int i = 0; i < questionAnswer.getAnswers().size(); i ++){
+                if(questionAnswer.getAnswers().get(i).isSelected()){
+                    answerSubmitted = true;
+                    userAnswers.add(questionAnswer.getAnswers().get(i));
+                }
+            }
+            if(!answerSubmitted){
+                userAnswers.add(null);
+            }
+        }
+        return userAnswers;
+    }
 }

@@ -1,12 +1,14 @@
-package com.example.tank.testingfirstapp;
+package com.example.tank.testingfirstapp.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.TextView;
+
+import com.example.tank.testingfirstapp.R;
+import com.example.tank.testingfirstapp.Util;
+import com.example.tank.testingfirstapp.model.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.List;
 public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHolder> {
 
     private List<Answer> mAnswers = new ArrayList<>();
-    private static int mCheckedPostion;
+    private int mCheckedPostion = -1;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -47,7 +49,6 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
         return vh;
     }
 
-
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -56,17 +57,27 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
     }
 
     private void initAnswerCheckBox(final ViewHolder holder, final int position) {
-        holder.mAnswerCheckBox.setChecked(position == mCheckedPostion);
-        holder.mAnswerCheckBox.setText(mAnswers.get(position).getText());
+        final Answer currentAnswer = mAnswers.get(position);
+        if(currentAnswer.isSelected()){
+            mCheckedPostion = position;
+        }
+        holder.mAnswerCheckBox.setChecked(currentAnswer.isSelected());
+        holder.mAnswerCheckBox.setText(currentAnswer.getText());
         holder.mAnswerCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (position == mCheckedPostion) {
                     holder.mAnswerCheckBox.setChecked(false);
+                    currentAnswer.setSelected(false);
                     mCheckedPostion = -1;
                 } else {
+                    if(mCheckedPostion > -1) {
+                        mAnswers.get(mCheckedPostion).setSelected(false);
+                    }
                     mCheckedPostion = position;
+                    currentAnswer.setSelected(true);
                     notifyDataSetChanged();
+                    Util.iPaginate.moveToNextPage();
                 }
             }
         });
