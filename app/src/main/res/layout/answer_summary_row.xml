@@ -12,6 +12,8 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:id="@+id/answer_summary_text_view"
         app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"

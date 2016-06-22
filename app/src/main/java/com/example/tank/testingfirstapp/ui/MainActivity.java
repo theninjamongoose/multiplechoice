@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
 import com.example.tank.testingfirstapp.R;
@@ -75,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements IPaginate {
         } catch (IllegalAccessException e) {
         }
         mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+    }
+
+    @Override
+    public void moveToPage(int pageNum) {
+        mViewPager.setCurrentItem(pageNum);
     }
 
 }

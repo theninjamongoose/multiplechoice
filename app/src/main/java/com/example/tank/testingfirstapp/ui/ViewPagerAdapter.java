@@ -4,11 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.tank.testingfirstapp.model.OverwatchQuestions;
-import com.example.tank.testingfirstapp.model.QuestionAnswer;
-import com.example.tank.testingfirstapp.ui.QuestionAnswerFragment;
-
-import java.util.ArrayList;
+import com.example.tank.testingfirstapp.model.Survey;
 
 /**
  * Created by tank on 6/21/16.
@@ -17,25 +13,25 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private OverwatchQuestions mOverwatchQuestions;
+    private Survey mSurvey;
 
-    public ViewPagerAdapter(FragmentManager fm, OverwatchQuestions overwatchQuestions) {
+    public ViewPagerAdapter(FragmentManager fm, Survey survey) {
         super(fm);
-        this.mOverwatchQuestions = overwatchQuestions;
+        this.mSurvey = survey;
     }
 
     @Override
     public int getCount() {
-        return mOverwatchQuestions.getQuestions().size() + 1;
+        return mSurvey.getQuestions().size() + 1;
     }
 
     @Override
     public Fragment getItem(int position) {
         if(position == getCount() - 1){
-            return AnswerSummaryFragment.newInstance(mOverwatchQuestions);
+            return AnswerSummaryFragment.newInstance(mSurvey);
         } else {
-            return QuestionAnswerFragment.newInstance(mOverwatchQuestions.getQuestions().get(position),
-                    position, getCount());
+            return QuestionAnswerFragment.newInstance(mSurvey.getQuestions().get(position),
+                    position, getCount() - 1);
         }
     }
 }

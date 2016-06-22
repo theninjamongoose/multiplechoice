@@ -8,12 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.tank.testingfirstapp.R;
-import com.example.tank.testingfirstapp.Util;
-import com.example.tank.testingfirstapp.model.OverwatchQuestions;
-import com.example.tank.testingfirstapp.model.QuestionAnswer;
+import com.example.tank.testingfirstapp.model.Survey;
 
 /**
  * Created by tank on 6/21/16.
@@ -26,16 +23,16 @@ public class AnswerSummaryFragment extends Fragment {
     private RecyclerView.Adapter mAnswerAdapter;
     private RecyclerView.LayoutManager mAnswerLayoutManager;
     private View mFragmentView;
-    private OverwatchQuestions mOverwatchQuestions;
+    private Survey mSurvey;
 
     /**
      * Create a new instance of CountingFragment, providing "num"
      * as an argument.
      */
-    public static AnswerSummaryFragment newInstance(OverwatchQuestions overwatchQuestions) {
+    public static AnswerSummaryFragment newInstance(Survey survey) {
         AnswerSummaryFragment answerSummaryFragment = new AnswerSummaryFragment();
         Bundle args = new Bundle();
-        args.putParcelable("overWatchQuestions", overwatchQuestions);
+        args.putParcelable("overWatchQuestions", survey);
         answerSummaryFragment.setArguments(args);
         return answerSummaryFragment;
     }
@@ -47,7 +44,7 @@ public class AnswerSummaryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mOverwatchQuestions = getArguments().getParcelable("overWatchQuestions");
+            mSurvey = getArguments().getParcelable("overWatchQuestions");
         } else {
             Log.e(TAG, "no data in saved bundle state");
         }
@@ -83,7 +80,7 @@ public class AnswerSummaryFragment extends Fragment {
         mAnswerLayoutManager = new LinearLayoutManager(mFragmentView.getContext());
         mAnswerRecyclerView.setLayoutManager(mAnswerLayoutManager);
         // specify an adapter (see also next example)
-        mAnswerAdapter = new AnswersSummaryAdapter(mOverwatchQuestions.getQuestions());
+        mAnswerAdapter = new AnswersSummaryAdapter(mSurvey.getQuestions());
         mAnswerRecyclerView.setAdapter(mAnswerAdapter);
         mAnswerRecyclerView.setTag("answerSummary");
     }

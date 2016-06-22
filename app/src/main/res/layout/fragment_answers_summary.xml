@@ -14,6 +14,7 @@
         android:id="@+id/submit_answers_btn"
         app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/answers_summary_recycler_view"
+        android:layout_marginTop="24dp"
         app:layout_constraintRight_toRightOf="@+id/constraintLayout" />
 
     <android.support.v7.widget.RecyclerView

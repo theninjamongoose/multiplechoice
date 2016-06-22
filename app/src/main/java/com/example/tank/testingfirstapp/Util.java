@@ -1,7 +1,7 @@
 package com.example.tank.testingfirstapp;
 
 import com.example.tank.testingfirstapp.model.Answer;
-import com.example.tank.testingfirstapp.model.OverwatchQuestions;
+import com.example.tank.testingfirstapp.model.Survey;
 import com.example.tank.testingfirstapp.model.QuestionAnswer;
 import com.example.tank.testingfirstapp.ui.IPaginate;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public class Util {
-    public static OverwatchQuestions getTestData(){
+    public static Survey getTestData(){
         final QuestionAnswer intrigueQuestion = buildQuestionAnswer("This is an intriguing demo.",
                 new String[]{"True", "False"});
 
@@ -31,14 +31,14 @@ public class Util {
                         "Superman",
                         "Captain America"});
 
-        OverwatchQuestions overwatchQuestions = new OverwatchQuestions();
-        overwatchQuestions.setQuestions(new ArrayList<QuestionAnswer>(){{
+        Survey survey = new Survey();
+        survey.setQuestions(new ArrayList<QuestionAnswer>(){{
             add(heightQuestion);
             add(sevenQuestion);
             add(superHeroQuestion);
             add(intrigueQuestion);
         }});
-        return overwatchQuestions;
+        return survey;
     }
 
     private static QuestionAnswer buildQuestionAnswer(String question, final String[] answerText){

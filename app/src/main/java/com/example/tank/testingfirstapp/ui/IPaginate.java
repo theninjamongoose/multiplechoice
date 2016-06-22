@@ -5,4 +5,6 @@ package com.example.tank.testingfirstapp.ui;
  */
 public interface IPaginate {
     void moveToNextPage();
+
+    void moveToPage(int pageNum);
 }

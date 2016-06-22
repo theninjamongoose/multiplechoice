@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by tank on 6/20/16.
  */
 
-public class OverwatchQuestions implements Parcelable{
+public class Survey implements Parcelable{
 
     private ArrayList<QuestionAnswer> questions = new ArrayList<>();
 
@@ -21,21 +21,21 @@ public class OverwatchQuestions implements Parcelable{
         this.questions = questions;
     }
 
-    public OverwatchQuestions(){};
+    public Survey(){};
 
-    private OverwatchQuestions(Parcel in){
+    private Survey(Parcel in){
         this.questions = new ArrayList<>();
         in.readTypedList(questions, QuestionAnswer.CREATOR);
     }
 
-    public static final Parcelable.Creator<OverwatchQuestions> CREATOR
-            = new Parcelable.Creator<OverwatchQuestions>() {
-        public OverwatchQuestions createFromParcel(Parcel in) {
-            return new OverwatchQuestions(in);
+    public static final Parcelable.Creator<Survey> CREATOR
+            = new Parcelable.Creator<Survey>() {
+        public Survey createFromParcel(Parcel in) {
+            return new Survey(in);
         }
 
-        public OverwatchQuestions[] newArray(int size) {
-            return new OverwatchQuestions[size];
+        public Survey[] newArray(int size) {
+            return new Survey[size];
         }
     };
 
